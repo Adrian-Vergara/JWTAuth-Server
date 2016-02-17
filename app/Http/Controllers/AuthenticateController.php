@@ -9,10 +9,8 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use Illuminate\Support\Facades\Crypt;
 use App\Sesion;
 use App\Http\Controllers\SesionController;
 
@@ -24,7 +22,6 @@ class AuthenticateController extends Controller
         $this->middleware('jwt.auth', ['except' => ['authenticate']]);
     }
 
-
     public function index()
     {
         $users = User::all();
@@ -33,7 +30,6 @@ class AuthenticateController extends Controller
             return response()->json(['usuarios' => $users]);
         }
     }
-
 
     public function authenticate(Request $request)
     {
@@ -58,6 +54,8 @@ class AuthenticateController extends Controller
                         if($sesion->registrar_sesion($usuario->id_usuario))
                         {
                             return response()->json(['usuario' => $usuario, compact('token')], 201);
+                            //return response()->json(compact('token'));
+                            //return response()->json(['usuario' => $usuario, compact('token')], 201);
                             //return response()->json(compact('token'));
                         }
                         else

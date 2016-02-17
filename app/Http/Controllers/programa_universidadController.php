@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Psy\Exception\ErrorException;
 use App\Universidad;
 use App\Programa;
+use App\User;
 
 class programa_universidadController extends Controller
 {
@@ -31,26 +32,21 @@ class programa_universidadController extends Controller
                 ->where('programas.estado', '=', 'activo')
                 ->select('programa_universidad.id_universidad', 'universidades.nombre_universidad', 'programa_universidad.id_programa', 'programas.nombre_programa')
                 ->get();
-            if($programas_universidades)
-            {
+            if($programas_universidades) {
                 return response()->json([
                     'error' => false,
                     'programas_universidades' => $programas_universidades
                 ]);
             }
             else{
-                return response()->json([
-                    'error' => true,
-                    'mensaje' => 'no se encuentran programas asociados a universidades'
-                ]);
             }
-        }catch (\Exception $e){
+        }
+        catch (\Exception $e){
             return response()->json([
                 'error' => true,
                 'mensaje' => 'Error al realizar consulta, por favor intentelo nuevamente'
             ]);
         }
-
     }
 
     public function get_universidad($id_usuario, $id_programa)
@@ -213,8 +209,7 @@ class programa_universidadController extends Controller
                 ]);
             }
         }
-        catch(\Exception $e)
-        {
+        catch(\Exception $e) {
             return response()->json([
                 'error' => true,
                 'mensaje' => 'Error al verificar la existencia del Usuario que realiza la peticion',

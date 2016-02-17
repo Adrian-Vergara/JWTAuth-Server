@@ -42,6 +42,7 @@ class UniversidadController extends Controller
             return response()->json([
                 'error' => true,
                 'mensaje' => 'Error al verificar la existencia del Usuario que realiza la peticion',
+                'mensaje' => 'Error al consultar las universidades',
                 'excepcion' => $e
             ]);
         }

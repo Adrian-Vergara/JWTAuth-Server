@@ -112,7 +112,7 @@ class UsuariosController extends Controller
                     {
                        return response()->json([
                            'error' => true,
-                           'mensaje' => 'Error, el Email ya existe'
+                           'mensaje' => 'El Email ya se encuentra registrado'
                        ]);
                     }
                     else

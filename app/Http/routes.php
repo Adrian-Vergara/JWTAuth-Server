@@ -1,4 +1,5 @@
 <?php
+
 /**************************ENRUTADO LISTO ************************/
 Route::group(['prefix' => 'api'], function(){
     //Route::resource('facultad', 'FacultadController');
@@ -12,6 +13,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::group(['prefix' => 'api'], function(){
     //Route::resource('programa', 'ProgramaController');
     Route::get('programa', 'ProgramaController@index');
+    Route::get('programa/{id_usuario}', 'ProgramaController@index');
     Route::get('programa/{id_usuario}/{id_facultad}', 'ProgramaController@show');
     Route::get('programa/id_programa/{id_programa}', 'ProgramaController@get_programa');
     Route::post('programa/{id_usuario}', 'ProgramaController@store');
@@ -83,4 +85,3 @@ Route::group(['prefix' => 'api'], function(){
     Route::resource('usuarios', 'UsuariosController');
     Route::get('usuarios/GetPruebaToken/{id_usuario}', 'UsuariosController@GetPruebaToken');
 });
-

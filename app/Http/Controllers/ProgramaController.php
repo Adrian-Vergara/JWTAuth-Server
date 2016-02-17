@@ -22,33 +22,29 @@ class ProgramaController extends Controller
 
     public function index()
     {
-        try
-        {
+        try {
             $programas = DB::table('programas')
                 ->join('facultades', 'facultades.id_facultad', '=', 'programas.id_facultad')
                 ->where('facultades.estado', '=', 'activo')
                 ->where('programas.estado', '=', 'activo')
                 ->select('programas.id_programa', 'programas.id_facultad', 'programas.nombre_programa', 'facultades.nombre_facultad')
                 ->get();
-            if($programas)
-            {
+            if ($programas) {
                 return response()->json([
                     'error' => false,
                     'Programas' => $programas
                 ]);
             }
-
+            else{
+                return response()->json([
+                    'error' => true,
+                    'mensaje' => 'No hay Programas registrados'
+                ]);
+            }
+        }catch(\Exception $e){
             return response()->json([
                 'error' => true,
-                'mensaje' => 'No hay Programas registrados'
-            ]);
-        }
-        catch(\Exception $e)
-        {
-            return response()->json([
-                'error' => true,
-                'mensaje' => 'Error al verificar la existencia del Usuario que realiza la peticion',
-                'excepcion' => $e
+                'mensaje' => 'error al ejecutar consulta'
             ]);
         }
     }
