@@ -43,9 +43,22 @@ return [
 
     'disks' => [
 
-        'local' => [
+        //Almacenamiento de Imagenes de los Encabezados
+        'encabezados' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
+            'root'   => public_path('encabezados'),
+        ],
+
+        //Almacenamiento de Imagenes de las Preguntas
+        'preguntas' => [
+            'driver' => 'local',
+            'root'   => public_path('preguntas'),
+        ],
+
+        //Almacenamiento de Imagenes de las Opciones
+        'opciones' => [
+            'driver' => 'local',
+            'root'   => public_path('opciones'),
         ],
 
         'ftp' => [
